@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /sample:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_sample_get_200_response'
+          description: A JSON object containing a greeting message
+      summary: Returns a greeting message
+components:
+  schemas:
+    _sample_get_200_response:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
