@@ -15,8 +15,8 @@ class HelloServiceTest @Autowired constructor(
 
     @Test
     fun `test`() {
-//        helloService.basic()
-//        helloService.lambda()
+        helloService.basic()
+        helloService.lambda()
         helloService.lambda2()
     }
 }
