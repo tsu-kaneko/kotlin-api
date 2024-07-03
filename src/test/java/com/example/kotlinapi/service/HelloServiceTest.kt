@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
 class HelloServiceTest @Autowired constructor(
-    val helloService: HelloService
+    private val helloService: HelloService
 ) {
 
     // プロパティインジェクション
@@ -15,6 +15,8 @@ class HelloServiceTest @Autowired constructor(
 
     @Test
     fun `test`() {
-        helloService.test()
+//        helloService.basic()
+//        helloService.lambda()
+        helloService.lambda2()
     }
 }
