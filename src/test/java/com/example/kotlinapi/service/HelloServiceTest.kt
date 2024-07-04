@@ -18,5 +18,6 @@ class HelloServiceTest @Autowired constructor(
         helloService.basic()
         helloService.lambda()
         helloService.lambda2()
+        helloService.elvis()
     }
 }

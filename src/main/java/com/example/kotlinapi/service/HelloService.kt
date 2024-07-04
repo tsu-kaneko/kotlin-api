@@ -27,7 +27,7 @@ class HelloService {
 
 //        // null許容型
 //        var hoge: String? = null
-//        // 安全呼び出し
+//        // 安全呼び出し。nullだったらnullを返す
 //        val length: Int? = hoge?.length
 //        // Elvis演算子 nullならデフォルト返す
 //        val length2: Int = hoge?.length ?: 0
@@ -59,6 +59,12 @@ class HelloService {
         // 関数の方を返してる
         // min2secの型は(Int) -> Int
         val timesInMinutes = listOf(2, 10, 15, 1)
+        fun toSeconds(time: String): (Int) -> Int = when (time) {
+            "hour" -> { value -> value * 60 * 60 }
+            "minute" -> { value -> value * 60 }
+            "second" -> { value -> value }
+            else -> { value -> value }
+        }
         val min2sec = toSeconds("minute") // val min2sec: (Int) -> Int = toSeconds("minute")
         val totalTimeInSeconds = timesInMinutes.map(min2sec).sum()
         println("トータルの時間は $totalTimeInSeconds 秒")
@@ -66,13 +72,6 @@ class HelloService {
 
         // 単独でも呼び出せる
         println({ string: String -> string.uppercase() }("hello"))
-    }
-
-    fun toSeconds(time: String): (Int) -> Int = when (time) {
-        "hour" -> { value -> value * 60 * 60 }
-        "minute" -> { value -> value * 60 }
-        "second" -> { value -> value }
-        else -> { value -> value }
     }
 
     fun lambda2() {
@@ -125,5 +124,23 @@ class HelloService {
         // クラスに高階関数追加する感じ
         // https://qiita.com/ist-sa-o/items/e7598ba27d2276ac707f
 
+    }
+
+    fun elvis() {
+        data class Employee (val name: String, var salary: Int)
+
+        fun employeeById(id: Int) = when(id) {
+            1 -> Employee("Mary", 20)
+            2 -> null
+            3 -> Employee("John", 21)
+            4 -> Employee("Ann", 23)
+            else -> null
+        }
+
+        // ?.でヌルセーフ
+        // ?:でデフォルト値
+        fun salaryById(id: Int): Int = employeeById(id)?.salary ?: 0
+
+        println((1..5).sumOf { id -> salaryById(id) })
     }
 }
