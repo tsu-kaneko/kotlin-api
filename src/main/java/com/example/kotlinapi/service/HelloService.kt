@@ -143,4 +143,17 @@ class HelloService {
 
         println((1..5).sumOf { id -> salaryById(id) })
     }
+
+    fun structuralEqual() {
+        data class DataClass(val data: String)
+
+        val d1 = DataClass("data")
+        val d2 = DataClass("data")
+        val d3 = d1
+
+        println(d1 == d2)  // true - 内容が等しい
+        println(d1 === d2) // false - 異なるインスタンス
+        println(d1 === d3) // true - 同じインスタンスを指している
+
+    }
 }

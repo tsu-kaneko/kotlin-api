@@ -19,5 +19,6 @@ class HelloServiceTest @Autowired constructor(
         helloService.lambda()
         helloService.lambda2()
         helloService.elvis()
+        helloService.structuralEqual()
     }
 }
